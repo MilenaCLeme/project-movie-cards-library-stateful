@@ -9,7 +9,7 @@ class Titulo extends React.Component {
         Título
         <input
           type="text"
-          name="titulo"
+          name="title"
           id="titulo"
           value={ title }
           onChange={ handleChange }

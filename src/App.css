@@ -1,3 +1,9 @@
+@import url('https://fonts.googleapis.com/css2?family=Nunito:ital,wght@0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap');
+
+* {
+  font-family: 'Nunito', sans-serif;
+}
+
 body {
   background-color: whitesmoke;
   box-sizing: border-box;
@@ -66,7 +72,7 @@ body {
 }
 
 .rating {
-  background-color: #007bff;
+  background-color: #272d33;
   border-radius: 25px;
   color: white;
   font-size: 16px;
@@ -80,4 +86,63 @@ body {
   display: flex;
   justify-content: flex-end;
   padding: 12px 20px;
+}
+
+.sub-title-schear {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-content: flex-start;
+  align-items: center;
+}
+
+.distancia {
+  margin: 20px;
+}
+
+#search-movie {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+}
+
+#form-search {
+  text-align: center;
+}
+
+#favoritos {
+  margin-left: 10px;
+}
+
+.bt-dispancia {
+  margin-left: 38px;
+}
+
+#form-add-movie {
+  display: flex;
+  flex-direction: column;
+  align-content: center;
+  align-items: center;
+}
+
+#label-title {
+  margin-right: 10px;
+}
+
+#label-subtitulo {
+  margin-right: 10px;
+}
+
+.flex-colun {
+  display: flex;
+  margin-top: 10px;
+  margin-bottom: 10px;
+}
+
+#label-genero {
+  margin-right: 15px;
+}
+
+#label-avaliacao {
+  margin-right: 15px;
 }

@@ -5,7 +5,7 @@ class Sinopse extends React.Component {
   render() {
     const { storyline, handleChange } = this.props;
     return (
-      <label htmlFor="textos" data-testid="storyline-input-label">
+      <label htmlFor="textos" className="form-label" id="label-storyline">
         Sinopse
         <textarea
           id="textos"
@@ -13,6 +13,7 @@ class Sinopse extends React.Component {
           onChange={ handleChange }
           data-testid="storyline-input"
           value={ storyline }
+          className="form-control"
         />
       </label>
     );

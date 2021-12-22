@@ -3,6 +3,7 @@ import PropTypes from 'prop-types';
 import MovieList from './MovieList';
 import SearchBar from './SearchBar';
 import AddMovie from './AddMovie';
+import SubTitle from './SubTitle';
 
 class MovieLibrary extends React.Component {
   constructor(props) {
@@ -15,17 +16,22 @@ class MovieLibrary extends React.Component {
       bookmarkedOnly: false,
       selectedGenre: '',
       movies: props.movies,
+      moviesfiltro: props.movies,
+      hide: false,
+      addMovie: false,
     };
 
     this.onSearchTextChange = this.onSearchTextChange.bind(this);
     this.onBookmarkedChange = this.onBookmarkedChange.bind(this);
     this.onSelectedGenreChange = this.onSelectedGenreChange.bind(this);
     this.salvarMovies = this.salvarMovies.bind(this);
+    this.onClickHide = this.onClickHide.bind(this);
+    this.onClickAddMovie = this.onClickAddMovie.bind(this);
   }
 
   onSearchTextChange(event) {
-    const { movies } = this.state;
-    const filterMovies = movies.filter(({ title, subtitle, storyline }) => (
+    const { moviesfiltro } = this.state;
+    const filterMovies = moviesfiltro.filter(({ title, subtitle, storyline }) => (
       title.includes(event.target.value)
       || subtitle.includes(event.target.value)
       || storyline.includes(event.target.value)));
@@ -36,12 +42,20 @@ class MovieLibrary extends React.Component {
   }
 
   onBookmarkedChange(event) {
-    const { movies } = this.state;
-    const filterFavoritos = movies.filter(({ bookmarked }) => bookmarked === true);
-    this.setState({
-      bookmarkedOnly: event.target.checked,
-      movies: filterFavoritos,
-    });
+    const { movies, moviesfiltro } = this.state;
+    if (event.target.checked === true) {
+      const filterFavoritos = movies.filter(({ bookmarked }) => bookmarked === true);
+      this.setState({
+        bookmarkedOnly: event.target.checked,
+        movies: filterFavoritos,
+      });
+    } else {
+      const semFiltro = moviesfiltro;
+      this.setState({
+        bookmarkedOnly: event.target.checked,
+        movies: semFiltro,
+      });
+    }
   }
 
   onSelectedGenreChange(event) {
@@ -55,6 +69,32 @@ class MovieLibrary extends React.Component {
     });
   }
 
+  onClickHide() {
+    const { hide } = this.state;
+    if (hide === false) {
+      this.setState({
+        hide: true,
+      });
+    } else {
+      this.setState({
+        hide: false,
+      });
+    }
+  }
+
+  onClickAddMovie() {
+    const { addMovie } = this.state;
+    if (addMovie === false) {
+      this.setState({
+        addMovie: true,
+      });
+    } else {
+      this.setState({
+        addMovie: false,
+      });
+    }
+  }
+
   /* Ajuda do Requsito 19 - Lucas Caribé, José Luís, Jeferson Oliveira, Bruna Vottri, Genesis Henriques - Turma 13 */
   salvarMovies(objNewMovie) {
     const { movies } = this.state;
@@ -66,21 +106,45 @@ class MovieLibrary extends React.Component {
   }
 
   render() {
-    const { searchText, bookmarkedOnly, selectedGenre, movies } = this.state;
-    console.log(this);
+    const {
+      searchText,
+      bookmarkedOnly,
+      selectedGenre,
+      movies,
+      hide,
+      addMovie,
+    } = this.state;
+
     return (
       <div>
-        <h2>My awesome movie library</h2>
-        <SearchBar
-          searchText={ searchText }
-          onSearchTextChange={ this.onSearchTextChange }
-          bookmarkedOnly={ bookmarkedOnly }
-          onBookmarkedChange={ this.onBookmarkedChange }
-          selectedGenre={ selectedGenre }
-          onSelectedGenreChange={ this.onSelectedGenreChange }
-        />
+        <SubTitle onClickHide={ this.onClickHide } />
+        <div id="search-movie">
+          {
+            hide === false ? null : (
+              <SearchBar
+                searchText={ searchText }
+                onSearchTextChange={ this.onSearchTextChange }
+                bookmarkedOnly={ bookmarkedOnly }
+                onBookmarkedChange={ this.onBookmarkedChange }
+                selectedGenre={ selectedGenre }
+                onSelectedGenreChange={ this.onSelectedGenreChange }
+              />
+            )
+          }
+        </div>
+        <button
+          type="button"
+          onClick={ this.onClickAddMovie }
+          className="bt-dispancia btn btn-outline-dark"
+        >
+          Add Movie
+        </button>
+        {
+          addMovie === false ? null : (
+            <AddMovie onClick={ this.salvarMovies } />
+          )
+        }
         <MovieList movies={ movies } />
-        <AddMovie onClick={ this.salvarMovies } />
       </div>
     );
   }

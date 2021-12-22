@@ -5,7 +5,11 @@ class Titulo extends React.Component {
   render() {
     const { title, handleChange } = this.props;
     return (
-      <label htmlFor="titulo" data-testid="title-input-label">
+      <label
+        htmlFor="titulo"
+        className="form-label"
+        id="label-title"
+      >
         Título
         <input
           type="text"
@@ -13,7 +17,7 @@ class Titulo extends React.Component {
           id="titulo"
           value={ title }
           onChange={ handleChange }
-          data-testid="title-input"
+          className="form-control"
         />
       </label>
     );

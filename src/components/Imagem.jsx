@@ -5,7 +5,7 @@ class Imagem extends React.Component {
   render() {
     const { imagePath, handleChange } = this.props;
     return (
-      <label htmlFor="imagem" data-testid="image-input-label">
+      <label htmlFor="imagem" className="form-label">
         Imagem
         <input
           type="text"
@@ -14,6 +14,7 @@ class Imagem extends React.Component {
           data-testid="image-input"
           name="imagePath"
           value={ imagePath }
+          className="form-control"
         />
       </label>
     );

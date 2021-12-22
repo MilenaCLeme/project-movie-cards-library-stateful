@@ -3,6 +3,7 @@ import Header from './components/Header';
 import './App.css';
 import MovieLibrary from './components/MovieLibrary';
 import data from './data';
+import 'bootstrap/dist/css/bootstrap.min.css';
 
 function App() {
   return (

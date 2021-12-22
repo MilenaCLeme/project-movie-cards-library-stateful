@@ -5,15 +5,17 @@ class Avaliacao extends React.Component {
   render() {
     const { rating, handleChange } = this.props;
     return (
-      <label htmlFor="avaliacao" data-testid="rating-input-label">
+      <label htmlFor="avaliacao" className="form-label" id="label-avaliacao">
         Avaliação
         <input
           id="avaliacao"
           type="number"
           name="rating"
+          max={ 5 }
+          min={ 0 }
           onChange={ handleChange }
           value={ rating }
-          data-testid="rating-input"
+          className="form-control"
         />
       </label>
     );

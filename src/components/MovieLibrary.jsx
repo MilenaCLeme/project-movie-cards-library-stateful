@@ -1,9 +1,9 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import { BiSearchAlt2 } from 'react-icons/bi';
 import MovieList from './MovieList';
 import SearchBar from './SearchBar';
 import AddMovie from './AddMovie';
+import SubTitle from './SubTitle';
 
 class MovieLibrary extends React.Component {
   constructor(props) {
@@ -115,20 +115,9 @@ class MovieLibrary extends React.Component {
       addMovie,
     } = this.state;
 
-    const iconeLupa = <BiSearchAlt2 />;
-
     return (
       <div>
-        <div className="sub-title-schear">
-          <h2>My awesome movie library</h2>
-          <button
-            type="submit"
-            onClick={ this.onClickHide }
-            className="distancia btn btn-dark"
-          >
-            { iconeLupa }
-          </button>
-        </div>
+        <SubTitle onClickHide={ this.onClickHide } />
         <div id="search-movie">
           {
             hide === false ? null : (
@@ -143,7 +132,13 @@ class MovieLibrary extends React.Component {
             )
           }
         </div>
-        <button type="button" onClick={ this.onClickAddMovie } className="bt-dispancia btn btn-outline-dark">Add Movie</button>
+        <button
+          type="button"
+          onClick={ this.onClickAddMovie }
+          className="bt-dispancia btn btn-outline-dark"
+        >
+          Add Movie
+        </button>
         {
           addMovie === false ? null : (
             <AddMovie onClick={ this.salvarMovies } />

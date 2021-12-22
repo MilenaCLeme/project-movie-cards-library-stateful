@@ -1,5 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
+import InputTexto from './InputText';
 
 class SearchBar extends React.Component {
   render() {
@@ -13,42 +14,39 @@ class SearchBar extends React.Component {
     } = this.props;
 
     return (
-      <form>
+      <form className="row gx-3 gy-2 align-items-center" id="form-search">
+        <InputTexto
+          searchText={ searchText }
+          onSearchTextChange={ onSearchTextChange }
+        />
         <div className="mb-3">
-          <label htmlFor="text" className="form-label">
-            Inclui o texto:
+          <label htmlFor="favoritos">
+            Mostrar somente favoritos
             <input
-              id="text"
-              type="text"
-              name="searchText"
-              value={ searchText }
-              onChange={ onSearchTextChange }
-              className="form-control"
+              type="checkbox"
+              id="favoritos"
+              checked={ bookmarkedOnly }
+              onChange={ onBookmarkedChange }
+              className="form-check-input"
             />
           </label>
         </div>
-        <label htmlFor="favoritos">
-          Mostrar somente favoritos
-          <input
-            type="checkbox"
-            id="favoritos"
-            checked={ bookmarkedOnly }
-            onChange={ onBookmarkedChange }
-          />
-        </label>
-        <label htmlFor="genero" data-testid="select-input-label">
-          Filtrar por gênero
-          <select
-            id="genero"
-            value={ selectedGenre }
-            onChange={ onSelectedGenreChange }
-          >
-            <option data-testid="select-option" value="">Todos</option>
-            <option data-testid="select-option" value="action">Ação</option>
-            <option data-testid="select-option" value="comedy">Comédia</option>
-            <option data-testid="select-option" value="thriller">Suspense</option>
-          </select>
-        </label>
+        <div className="mb-3">
+          <label htmlFor="genero" className="form-label">
+            Filtrar por gênero
+            <select
+              id="genero"
+              value={ selectedGenre }
+              onChange={ onSelectedGenreChange }
+              className="form-select"
+            >
+              <option data-testid="select-option" value="">Todos</option>
+              <option data-testid="select-option" value="action">Ação</option>
+              <option data-testid="select-option" value="comedy">Comédia</option>
+              <option data-testid="select-option" value="thriller">Suspense</option>
+            </select>
+          </label>
+        </div>
       </form>
     );
   }

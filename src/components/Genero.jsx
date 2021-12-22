@@ -5,14 +5,14 @@ class Genero extends React.Component {
   render() {
     const { genre, handleChange } = this.props;
     return (
-      <label htmlFor="genero" data-testid="genre-input-label">
+      <label htmlFor="genero" className="form-label" id="label-genero">
         Gênero
         <select
           name="genre"
           id="genero"
           value={ genre }
           onChange={ handleChange }
-          data-testid="genre-input"
+          className="form-select"
         >
           <option
             data-testid="genre-option"

@@ -5,7 +5,7 @@ class Subtitulo extends React.Component {
   render() {
     const { subtitle, handleChange } = this.props;
     return (
-      <label htmlFor="subtitulo" data-testid="subtitle-input-label">
+      <label htmlFor="subtitulo" className="form-label" id="label-subtitulo">
         Subtítulo
         <input
           type="text"
@@ -13,7 +13,7 @@ class Subtitulo extends React.Component {
           id="subtitulo"
           onChange={ handleChange }
           value={ subtitle }
-          data-testid="subtitle-input"
+          className="form-control"
         />
       </label>
     );
